@@ -1,0 +1,295 @@
+/*
+Theme Name: Vota.cr
+Author: Vota.cr
+Description: Vota.cr
+Version: 0.0.1
+Tags: vota
+*/
+
+@import "./reset.scss";
+
+$font: "Montserrat";
+$grey: #485156;
+$greyLight: #ebebeb;
+$marginSmall: 10px;
+$margin: 20px;
+$siteMaxWidth: 900px;
+
+body {
+  font-family: $font, sans-serif;
+  font-weight: 300;
+  line-height: 1.2em;
+  -webkit-font-smoothing: antialiased;
+}
+
+section {
+  margin: 0 0 $margin 0;
+}
+
+h1 {
+  font-size: 1.2em;
+  margin: 0 0 $margin 0;
+  line-height: 1.23em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1em;
+  margin: 0 0 $margin 0;
+  line-height: 1.23em;
+  font-weight: 500;
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+.header {
+  background: $grey;
+  padding: $marginSmall;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  .logo {
+    width: 120px;
+  }
+}
+
+.wrapper {
+  max-width: $siteMaxWidth;
+  margin: 0 auto;
+}
+
+.hero {
+  background: $grey;
+  color: white;
+  padding: $margin;
+  &-content {
+    max-width: $siteMaxWidth;
+    margin: $margin auto;
+  }
+}
+
+.content {
+  margin: $margin;
+}
+
+.partidos {
+  .titulo {
+    padding: $marginSmall;
+    background: $grey;
+    color: white;
+  }
+  ul {
+    li {
+      a {
+        padding: $margin;
+        border-bottom: 1px solid $greyLight;
+        display: block;
+        color: $grey;
+        text-decoration: none;
+        &:hover {
+          background: $greyLight;
+        }
+      }
+    }
+  }
+}
+
+.partidos_categoria {
+  margin-top: 60px;
+  h2 {
+    margin: 0 0 0 $margin;
+  }
+  a {
+    padding: $margin;
+    border-bottom: 1px solid $greyLight;
+    display: block;
+    color: $grey;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    text-decoration: none;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    &:hover {
+      background: $greyLight;
+    }
+  }
+}
+
+.encabezado_partido {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: $margin;
+  &_bandera {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin: 0 $marginSmall 0 0;
+    img {
+      width: auto;
+      height: 100%;
+    }
+  }
+  h1 {
+    color: $grey;
+    margin: 0;
+    line-height: 0.8em;
+    a {
+      color: $grey;
+      text-decoration: none;
+    }
+  }
+}
+
+.encabezado_politico {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 60px $margin $margin $margin;
+  h2 {
+    margin: 0;
+  }
+  &_foto {
+    background: $greyLight;
+    height: 100px;
+    margin: 0 $marginSmall 0 0;
+    overflow: hidden;
+    img {
+      width: auto;
+      height: 100%;
+    }
+  }
+}
+
+.alertas {
+  h1 {
+    margin: 0 0 0 $margin;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    img {
+      width: 30px;
+      margin: 0 5px 0 0;
+    }
+  }
+  ul {
+    li {
+      a {
+        padding: $margin;
+        border-bottom: 1px solid $greyLight;
+        display: block;
+        color: $grey;
+        text-decoration: none;
+        &:hover {
+          background: $greyLight;
+        }
+        span {
+          text-transform: uppercase;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.preguntas {
+  h1 {
+    margin: 0 0 0 $margin;
+  }
+  ul {
+    li {
+      padding: $margin;
+      border-bottom: 1px solid $greyLight;
+      display: block;
+      color: $grey;
+      text-decoration: none;
+      h2 {
+        margin: 0 0 $margin 0;
+      }
+      h3 {
+        margin: $margin 0;
+        text-decoration: underline;
+      }
+      h4 {
+        margin: 0 0 $margin 0;
+      }
+      .respuesta {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+        iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.alerta_icono {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  img {
+    width: 20px;
+    margin: 0 5px 0 0;
+  }
+}
+
+.back {
+  margin: 0 $marginSmall 0 0;
+  width: 25px;
+  height: 25px;
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
+  }
+  button:focus {
+    outline: 0;
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.plan {
+  margin: 0 $margin;
+  background: $grey;
+  color: white;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 15px;
+  &:hover {
+    background: $greyLight;
+    color: $grey;
+  }
+}
