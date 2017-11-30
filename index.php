@@ -37,6 +37,7 @@ get_header(); ?>
 			<?php //wp_list_categories('show_count=1&title_li=<h2>Categories</h2>'); ?>
 			<ul>
 			<?php
+
 				/*
 				* Loop through Categories and Display Posts within
 				*/
@@ -46,33 +47,68 @@ get_header(); ?>
 				foreach( $taxonomies as $taxonomy ) :
 					// Gets every "category" (term) in this taxonomy to get the respective posts
 					$terms = get_terms( $taxonomy );
+					usort($terms,function(&$a, &$b) use ($taxonomy, $post_type) {
+
+						$args = array(
+							'post_type' => $post_type,
+							'posts_per_page' => -1,  //show all posts
+							'tax_query' => array(
+								array(
+									'taxonomy' => $taxonomy,
+									'field' => 'slug',
+									'terms' => $a->slug,
+								)
+							)
+						);
+						$posts = new WP_Query($args);
+						$alerta_count = 0;
+						while( $posts->have_posts() ) : $posts->the_post();
+							if(get_field('alerta')): $alerta_count = $alerta_count+count(get_field('alerta')); endif;
+						endwhile;
+
+						$a->count_alerta = $alerta_count;
+						$a->count_posts = count($posts);
+
+						$args = array(
+							'post_type' => $post_type,
+							'posts_per_page' => -1,  //show all posts
+							'tax_query' => array(
+								array(
+									'taxonomy' => $taxonomy,
+									'field' => 'slug',
+									'terms' => $b->slug,
+								)
+							)
+						);
+
+						$posts = new WP_Query($args);
+						$alertab_count = 0;
+						while( $posts->have_posts() ) : $posts->the_post();
+							if(get_field('alerta')): $alertab_count = $alertab_count+count(get_field('alerta')); endif;
+						endwhile;
+
+						$b->count_alerta = $alertab_count;
+						$b->count_posts = count($posts);
+
+
+						if ($alerta_count == $alertab_count) {
+							return 0;
+						}
+						return ($alerta_count < $alertab_count) ? 1 : -1;
+
+                    });
+
 					foreach( $terms as $term ) : ?>
 						<?php
-						$args = array(
-								'post_type' => $post_type,
-								'posts_per_page' => -1,  //show all posts
-								'tax_query' => array(
-									array(
-										'taxonomy' => $taxonomy,
-										'field' => 'slug',
-										'terms' => $term->slug,
-									)
-								)
-				
-							);
-						$posts = new WP_Query($args);
-						if( $posts->have_posts() ): ?> 
+						if( $term->count_posts ):
+                            ?>
 						<li>
 							<a href="<?php echo get_category_link( $term ); ?>">
 								<?php echo $term->name; ?>
-								<?php while( $posts->have_posts() ) : $posts->the_post(); ?>
-										<?php  //echo get_the_title(); ?>
-										<?php if(get_field('alerta')): ?>
-											(<?php echo count( get_field('alerta') ); ?>)
-										<?php endif;  ?>
-								<?php endwhile; endif; ?>
+    							<?php if($term->count_alerta): ?> (<?php echo $term->count_alerta; ?>) <?php endif; ?>
 							</a>
 						</li>
+						<?php endif; ?>
 					<?php endforeach;
 				endforeach; 
 				?>
