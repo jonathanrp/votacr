@@ -14,6 +14,7 @@ get_header(); ?>
 			</div>
 		</div>
 		<div class="wrapper">
+		<img class="cover" src="<?php echo get_bloginfo( 'template_directory' );?>/img/votacr_cover.png"/>
         <div class="content">
 			<h1>¿Qué información hay acá?</h1>
 			<section>
@@ -21,12 +22,12 @@ get_header(); ?>
 				<p>Son noticias relacionadas a corrupción o cualquier acto negativo que nos parece importante que tomés en cuenta a la hora de votar. Podés ver quiénes cuentan con alertas y la sumatoria de alertas de cada partido.</p>
 			</section>
 			<section>
-				<h2>PREGUNTAS</h2>
-				<p>Hemos seleccionado los temás más relevantes para el desarrollo sostenible de un país y generamos una pregunta problema para los candidatos.</p>
+				<h2>DEBATES, ENTREVISTAS E INFORMACIÓN</h2>
+				<p>Recopilamos información acerca de los candidatos y te la presentamos de una forma fácil de consultar en cualquier momento, en un sólo lugar.</p>
 			</section>
 			<section>
-				<h2>INFORMACIÓN Y NOTICIAS</h2>
-				<p>Información relevante .y noticias relacionadas al candidato.</p>
+				<h2>PRONTO</h2>
+				<p>Estamos trabajando en nuevas secciones que te pueden interesar, podes estar al tanto en nuestro <a href="https://www.facebook.com/votacr/" target="_blank">facebook.</a></p>
 			</section>
 		</div><!-- content -->
 		<div class="partidos">
@@ -84,7 +85,8 @@ get_header(); ?>
 						$posts = new WP_Query($args);
 						$alertab_count = 0;
 						while( $posts->have_posts() ) : $posts->the_post();
-							if(get_field('alerta')): $alertab_count = $alertab_count+count(get_field('alerta')); endif;
+							if(get_field('alerta')): $alertab_count = $alertab_count+count(get_field('alerta')); 
+							endif;
 						endwhile;
 
 						$b->count_alerta = $alertab_count;
@@ -104,8 +106,16 @@ get_header(); ?>
                             ?>
 						<li>
 							<a href="<?php echo get_category_link( $term ); ?>">
+								<div class="bandera-home">
+									<img src="<?php echo z_taxonomy_image_url($term->term_id); ?>" />
+								</div>
+								<div class="partido_home">
 								<?php echo $term->name; ?>
-    							<?php if($term->count_alerta): ?> (<?php echo $term->count_alerta; ?>) <?php endif; ?>
+								</div>
+								<?php if($term->count_alerta): ?> 
+								<img class="alerta_home" src="<?php echo get_bloginfo( 'template_directory' );?>/img/alerta.png" />
+								<?php echo $term->count_alerta; ?>
+								<?php endif; ?>
 							</a>
 						</li>
 						<?php endif; ?>

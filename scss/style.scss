@@ -14,24 +14,67 @@ $greyLight: #ebebeb;
 $marginSmall: 10px;
 $margin: 20px;
 $siteMaxWidth: 900px;
+$thumbWidth: 130px;
 
 body {
   font-family: $font, sans-serif;
   font-weight: 300;
   line-height: 1.2em;
   -webkit-font-smoothing: antialiased;
+  font-size: 13px;
+  color: $grey;
+}
+
+iframe {
+  width: $thumbWidth;
+  height: 74px;
 }
 
 section {
   margin: 0 0 $margin 0;
 }
 
+p {
+  margin: 0 0 $margin 0;
+}
+
+a {
+  color: $grey;
+}
+
+input {
+  padding: $marginSmall;
+  font-size: 14px;
+  border: 1px solid $greyLight;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.recaptcha {
+  margin: 0 0 $margin 0;
+  iframe {
+    width: auto;
+  }
+}
+
+input[type="submit"] {
+  background: $grey;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
 h1 {
+  background: $grey;
+  color: white;
   font-size: 1.2em;
   margin: 0 0 $margin 0;
   line-height: 1.23em;
-  font-weight: 500;
   text-transform: uppercase;
+  padding: $margin;
 }
 
 h2 {
@@ -55,7 +98,27 @@ h3 {
   -ms-flex-align: center;
   align-items: center;
   .logo {
-    width: 120px;
+    flex: 1;
+    img {
+      width: 120px;
+    }
+  }
+  .contacto {
+    img {
+      width: 25px;
+    }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  .facebook {
+    margin: 0 $margin 0 $margin;
+    img {
+      width: 19px;
+    }
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -64,10 +127,26 @@ h3 {
   margin: 0 auto;
 }
 
+.cover {
+  width: 100%;
+  margin: 0 0 $marginSmall 0;
+}
+
+.page {
+  padding: 0 $margin;
+  h1 {
+    margin: $margin 0;
+  }
+}
+
 .hero {
-  background: $grey;
+  background: #3b4246;
   color: white;
   padding: $margin;
+  display: none;
+  h1 {
+    background-color: #3b4246;
+  }
   &-content {
     max-width: $siteMaxWidth;
     margin: $margin auto;
@@ -76,6 +155,50 @@ h3 {
 
 .content {
   margin: $margin;
+}
+
+.info {
+  &_content {
+    padding: $margin;
+  }
+}
+
+.alerta_home {
+  width: 25px;
+  margin: 0 10px 0 20px;
+}
+
+.partido_home {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.video_resumen {
+  margin: $margin;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+  iframe {
+    margin: 0 $margin 0 0;
+  }
+}
+
+.bandera-home {
+  width: 50px;
+  height: 50px;
+  margin: 0 $marginSmall 0 0;
+  display: flex;
+  align-items: center;
+  img {
+    width: 100%;
+  }
 }
 
 .partidos {
@@ -92,6 +215,8 @@ h3 {
         display: block;
         color: $grey;
         text-decoration: none;
+        display: flex;
+        align-items: center;
         &:hover {
           background: $greyLight;
         }
@@ -107,6 +232,7 @@ h3 {
   }
   a {
     padding: $margin;
+    text-transform: uppercase;
     border-bottom: 1px solid $greyLight;
     display: block;
     color: $grey;
@@ -118,7 +244,7 @@ h3 {
     -ms-flex-pack: justify;
     justify-content: space-between;
     &:hover {
-      background: $greyLight;
+      background-color: $greyLight;
     }
   }
 }
@@ -132,7 +258,6 @@ h3 {
   align-items: center;
   margin: $margin;
   &_bandera {
-    width: 50px;
     height: 50px;
     overflow: hidden;
     margin: 0 $marginSmall 0 0;
@@ -141,43 +266,41 @@ h3 {
       height: 100%;
     }
   }
+  a {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: $grey;
+  }
   h1 {
+    background: none;
     color: $grey;
     margin: 0;
-    line-height: 0.8em;
-    a {
-      color: $grey;
-      text-decoration: none;
-    }
+    padding: 0;
   }
 }
 
 .encabezado_politico {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin: 60px $margin $margin $margin;
   h2 {
     margin: 0;
   }
+  h3 {
+    font-size: 13px;
+  }
   &_foto {
-    background: $greyLight;
-    height: 100px;
-    margin: 0 $marginSmall 0 0;
     overflow: hidden;
+    text-align: center;
     img {
       width: auto;
       height: 100%;
     }
   }
+  &_nombre {
+    margin: $margin;
+  }
 }
 
 .alertas {
   h1 {
-    margin: 0 0 0 $margin;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -187,6 +310,9 @@ h3 {
     img {
       width: 30px;
       margin: 0 5px 0 0;
+    }
+    span {
+      flex: 1;
     }
   }
   ul {
@@ -210,8 +336,8 @@ h3 {
 }
 
 .preguntas {
-  h1 {
-    margin: 0 0 0 $margin;
+  a {
+    margin: $margin;
   }
   ul {
     li {
@@ -220,6 +346,10 @@ h3 {
       display: block;
       color: $grey;
       text-decoration: none;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
       h2 {
         margin: 0 0 $margin 0;
       }
@@ -231,18 +361,31 @@ h3 {
         margin: 0 0 $margin 0;
       }
       .respuesta {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 */
-        padding-top: 25px;
-        height: 0;
-        iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+        margin: 0 $margin 0 0;
+        p {
+          margin: 0;
         }
       }
+    }
+  }
+}
+
+.entrevistas {
+  .entrevistas_encabezado {
+    margin: $margin;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    h2 {
+      margin: 0;
+    }
+    img {
+      width: $thumbWidth;
+      height: auto;
+      margin: 0 $margin 0 0;
     }
   }
 }
@@ -289,7 +432,7 @@ h3 {
   text-decoration: none;
   padding: 10px 15px;
   &:hover {
-    background: $greyLight;
+    background-color: $greyLight;
     color: $grey;
   }
 }
